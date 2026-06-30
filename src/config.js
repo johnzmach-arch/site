@@ -6,7 +6,7 @@
 
 export const siteConfig = {
   // Nome exibido em toda a interface (logo, títulos, rodapé, mensagens).
-  brandName: "Brumadinho",
+  brandName: "BRUMA STORE",
 
   // Frase de posicionamento curta usada no hero/sobre.
   tagline: "Periféricos & PCs de alto padrão",
@@ -16,7 +16,7 @@ export const siteConfig = {
   whatsappNumber: "5511999999999",
 
   // @ do Instagram (placeholder — trocar depois).
-  instagramHandle: "@brumadinho",
+  instagramHandle: "@brumastore",
 
   // URL completa do Instagram (placeholder).
   instagramUrl: "https://instagram.com/",

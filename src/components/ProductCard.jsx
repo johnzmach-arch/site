@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Media from "./Media.jsx";
 import { formatPrice } from "../utils/whatsapp.js";
+import { startingPrice } from "../data/products.js";
 
 export default function ProductCard({ product }) {
   const variant = product.variants[0];
+  const from = startingPrice(product);
+  const multi = product.variants.length > 1;
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -19,8 +22,22 @@ export default function ProductCard({ product }) {
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <div className="h-full w-full transition-transform duration-700 group-hover:scale-105">
-            <Media src={product.images?.[0]} label={product.name} accent={variant.color} />
+            <Media src={variant.images?.[0]} label={product.name} accent={variant.color} />
           </div>
+
+          {/* mini swatches das cores disponíveis */}
+          {multi && (
+            <div className="absolute bottom-4 left-4 flex gap-1.5">
+              {product.variants.slice(0, 5).map((v) => (
+                <span
+                  key={v.name}
+                  className="h-3 w-3 rounded-full border border-white/30"
+                  style={{ background: v.color }}
+                  title={v.name}
+                />
+              ))}
+            </div>
+          )}
 
           {/* brilho de acento no hover */}
           <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -44,8 +61,13 @@ export default function ProductCard({ product }) {
             </h3>
           </div>
           <div className="text-right">
+            {multi && (
+              <p className="text-[10px] uppercase tracking-widest text-white/40">
+                a partir de
+              </p>
+            )}
             <p className="font-display text-lg font-bold text-accent">
-              {formatPrice(product.price)}
+              {formatPrice(from)}
             </p>
             <span className="text-[11px] uppercase tracking-widest text-white/40 transition-colors group-hover:text-accent">
               Ver →

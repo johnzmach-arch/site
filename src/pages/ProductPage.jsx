@@ -9,9 +9,19 @@ import Media from "../components/Media.jsx";
 const SPEC_LABELS = {
   layout: "Layout",
   switches: "Switches",
+  atuacao: "Atuação",
+  polling: "Polling Rate",
+  latencia: "Latência",
+  precisao: "Precisão",
+  display: "Display",
   material: "Material",
+  acustica: "Acústica",
+  keycaps: "Keycaps",
+  hotswap: "Hot-swap",
   conexao: "Conexão",
+  bateria: "Bateria",
   rgb: "Iluminação",
+  durabilidade: "Durabilidade",
 };
 
 export default function ProductPage() {
@@ -49,6 +59,10 @@ export default function ProductPage() {
 
   const variant = product.variants[variantIdx];
   const waMessage = productMessage(product.name, variant.name);
+
+  // Galeria da variante selecionada (cai em [null] → placeholder se vazia).
+  const gallery = variant.images?.length ? variant.images : [null];
+  const safeGalleryIdx = Math.min(galleryIdx, gallery.length - 1);
 
   return (
     <div className="mx-auto max-w-7xl px-6 pb-28 pt-28 sm:pt-32">
@@ -93,7 +107,7 @@ export default function ProductPage() {
               <Viewer360 product={product} accent={variant.color} />
             ) : (
               <Media
-                src={product.images?.[galleryIdx]}
+                src={gallery[safeGalleryIdx]}
                 label={`${product.name} — ${variant.name}`}
                 accent={variant.color}
               />
@@ -101,16 +115,16 @@ export default function ProductPage() {
           </div>
 
           {/* thumbnails da galeria */}
-          <div className="mt-4 flex gap-3">
-            {product.images.map((img, i) => (
+          <div className="mt-4 flex flex-wrap gap-3">
+            {gallery.map((img, i) => (
               <button
-                key={img}
+                key={`${variant.name}-${i}`}
                 onClick={() => {
                   setView("galeria");
                   setGalleryIdx(i);
                 }}
                 className={`relative h-20 w-24 overflow-hidden rounded-lg border transition-all ${
-                  view === "galeria" && galleryIdx === i
+                  view === "galeria" && safeGalleryIdx === i
                     ? "border-accent"
                     : "border-white/10 hover:border-white/30"
                 }`}
@@ -123,9 +137,9 @@ export default function ProductPage() {
 
         {/* --------------------------- PAINEL DE CUSTOMIZAÇÃO --------------------------- */}
         <div className="lg:pl-4">
-          {product.badge && (
+          {(variant.badge || product.badge) && (
             <span className="mb-4 inline-block rounded-full bg-accent px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-black">
-              {product.badge}
+              {variant.badge || product.badge}
             </span>
           )}
           <p className="text-xs uppercase tracking-widest text-white/40">

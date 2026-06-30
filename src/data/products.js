@@ -1,19 +1,17 @@
 // =============================================================================
-//  DADOS DE PRODUTOS — PLACEHOLDER
+//  DADOS DE PRODUTOS — linha real GravaStar (modelos com variantes de cor)
 //
 //  ATENÇÃO: os preços abaixo são PLACEHOLDER (catálogo GravaStar EUA convertido
 //  por ~R$5,45). NÃO são preços finais de venda. Substituir pelos valores reais
 //  definidos para o Brasil (com imposto e margem).
 //
-//  Como editar:
-//   - Adicione/edite objetos neste array para mudar o catálogo.
-//   - `images`: nomes dos arquivos reais (coloque em /public/products/).
-//     Enquanto não existirem, o site mostra um placeholder elegante automático.
-//   - `frames`: quantidade de frames do giro 360° (frame_01..frame_NN em
-//     /public/products/<id>/). Se 0, o visualizador usa o fallback procedural.
-//   - `variants`: cada cor troca a imagem principal e pode ter preço próprio.
-//   - `options`: pílulas selecionáveis (switch, layout...) com `priceDelta`
-//     somado ao preço base (apenas visual, para simular o configurador).
+//  ESTRUTURA: cada objeto é um MODELO; `variants` são as cores reais (viram os
+//  swatches no configurador da página de produto). Selecionar uma cor troca a
+//  imagem principal, o nome e o preço exibidos.
+//
+//  IMAGENS: cada variante tem seu próprio `images` (caminhos em /public). Os
+//  caminhos começam com "/" — enquanto o arquivo não existir, aparece um
+//  placeholder dark elegante automaticamente. Veja /public/products/README.md.
 // =============================================================================
 
 export const categories = [
@@ -23,59 +21,128 @@ export const categories = [
   { id: "Acessórios", label: "Acessórios", available: false },
 ];
 
+// Opções padrão de layout (pílulas — apenas visual no protótipo).
+const layoutOption = {
+  id: "layout",
+  label: "Layout",
+  choices: [
+    { id: "abnt2", label: "ABNT2", priceDelta: 0 },
+    { id: "ansi", label: "ANSI (US)", priceDelta: 0 },
+  ],
+};
+
 export const products = [
+  // ------------------------------------------------------------------- V60 Pro
   {
-    id: "k98-pro-phantom-black",
-    name: "Mercury K98 Pro — Phantom Black",
+    id: "v60-pro",
+    name: "Mercury V60 Pro",
     category: "Teclados",
-    price: 1345,
     badge: "Novo",
-    tagline: "Carro-chefe full-size 98% em alumínio aeronáutico.",
+    tagline:
+      "60% translúcido com switches magnéticos UFO (Hall Effect) e polling de 8000Hz.",
+    price: 1090, // preço inicial (placeholder)
     specs: {
-      layout: "98%",
-      switches: "GravaStar x Kailh Linear",
-      material: "Alumínio",
-      conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
-      rgb: "2 sistemas de luz",
+      layout: "60%",
+      switches: "GravaStar UFO Magnético (Hall Effect · Linear)",
+      atuacao: "Ajustável 0,1–3,5 mm · Rapid Trigger",
+      polling: "8000 Hz",
+      latencia: "0,125 ms",
+      precisao: "0,005 mm",
+      material: "Case translúcido (PC) · placa de alumínio escovado",
+      acustica: "5 camadas de espuma acústica (PORON / IXPE)",
+      conexao: "USB-C (com fio) / 2.4GHz",
+      rgb: "RGB por tecla · presets (CS:GO, VALORANT, Delta Force)",
+      durabilidade: "100 milhões de cliques",
     },
-    variants: [{ name: "Phantom Black", color: "#1A1A1A", price: 1345 }],
     options: [
       {
         id: "switch",
         label: "Switch",
         choices: [
-          { id: "linear", label: "Linear", priceDelta: 0 },
-          { id: "tactile", label: "Tátil", priceDelta: 40 },
-          { id: "speedy", label: "Speedy", priceDelta: 60 },
+          { id: "ufo", label: "UFO Magnético", priceDelta: 0 },
+          { id: "ufo-silent", label: "UFO Silent", priceDelta: 60 },
         ],
       },
+      layoutOption,
+    ],
+    frames: 0,
+    variants: [
       {
-        id: "layout",
-        label: "Layout",
-        choices: [
-          { id: "abnt2", label: "ABNT2", priceDelta: 0 },
-          { id: "ansi", label: "ANSI (US)", priceDelta: 0 },
+        name: "Clutch — Transparente",
+        color: "#3E434C",
+        price: 1090,
+        // Coloque as 5 fotos enviadas em /public/products/v60-pro/
+        images: [
+          "/products/v60-pro/clutch-01.jpg",
+          "/products/v60-pro/clutch-02.jpg",
+          "/products/v60-pro/clutch-03.jpg",
+          "/products/v60-pro/clutch-04.jpg",
+          "/products/v60-pro/clutch-05.jpg",
         ],
       },
     ],
-    frames: 0,
-    images: ["placeholder_k98_01.jpg", "placeholder_k98_02.jpg"],
   },
+
+  // ------------------------------------------------------------------ K98 Pro
   {
-    id: "k1-pro-cyberpunk",
-    name: "Mercury K1 Pro — Cyberpunk",
+    id: "k98-pro",
+    name: "Mercury K98 Pro",
     category: "Teclados",
-    price: 1090,
-    badge: "Mais Vendido",
-    tagline: "Ícone 75% com iluminação lateral de 270°.",
+    badge: "Premium",
+    tagline: "Carro-chefe 98% com display TFT 1.65\", 8KHz e switches UFO.",
+    price: 1415,
     specs: {
-      layout: "75%",
-      switches: "GravaStar x Kailh Speedy Mint",
+      layout: "98%",
+      switches: "GravaStar UFO",
+      display: "TFT inteligente 1.65\"",
+      polling: "8000 Hz (dual)",
       material: "Alumínio",
       conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
-      rgb: "270° customizável",
+      bateria: "Até 228h sem fio",
+      rgb: "2 sistemas de luz · RGB",
     },
-    variants: [{ name: "Cyberpunk", color: "#C8A050", price: 1090 }],
+    options: [
+      {
+        id: "switch",
+        label: "Switch",
+        choices: [
+          { id: "ufo", label: "UFO", priceDelta: 0 },
+          { id: "linear", label: "Linear", priceDelta: -40 },
+          { id: "tactile", label: "Tátil", priceDelta: 20 },
+        ],
+      },
+      layoutOption,
+    ],
+    frames: 0,
+    variants: [
+      {
+        name: "Phantom Black",
+        color: "#161616",
+        price: 1415,
+        images: [],
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------- K1 Pro
+  {
+    id: "k1-pro",
+    name: "Mercury K1 Pro",
+    category: "Teclados",
+    badge: "Mais Vendido",
+    tagline:
+      "75% em alumínio com switches Kailh Speedy Mint e iluminação lateral de 270°.",
+    price: 925,
+    specs: {
+      layout: "75%",
+      switches: "GravaStar x Kailh Speedy Mint (Linear · 45gf)",
+      material: "Alumínio (acabamento glossy)",
+      keycaps: "PBT Pudding (sublimação)",
+      conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
+      bateria: "8000 mAh",
+      rgb: "2 sistemas RGB · 16.8M cores · 13 modos",
+      durabilidade: "70 milhões de cliques",
+    },
     options: [
       {
         id: "switch",
@@ -86,139 +153,91 @@ export const products = [
           { id: "tactile", label: "Tátil", priceDelta: 20 },
         ],
       },
-      {
-        id: "layout",
-        label: "Layout",
-        choices: [
-          { id: "abnt2", label: "ABNT2", priceDelta: 0 },
-          { id: "ansi", label: "ANSI (US)", priceDelta: 0 },
-        ],
-      },
+      layoutOption,
     ],
     frames: 0,
-    images: ["placeholder_k1pro_cyber_01.jpg", "placeholder_k1pro_cyber_02.jpg"],
+    variants: [
+      { name: "Cyberpunk", color: "#2A2E38", price: 1090, badge: "Edição Especial", images: [] },
+      { name: "CyberFlare", color: "#C2392A", price: 980, images: [] },
+      { name: "Interstellar Silver", color: "#C7C9CC", price: 925, images: [] },
+      { name: "Battle-Worn Yellow", color: "#C9A23A", price: 1090, badge: "Edição Especial", images: [] },
+    ],
   },
+
+  // ----------------------------------------------------------------------- K1
   {
-    id: "k1-pro-interstellar-silver",
-    name: "Mercury K1 Pro — Interstellar Silver",
+    id: "k1",
+    name: "Mercury K1",
     category: "Teclados",
-    price: 980,
     badge: null,
-    tagline: "Prata interestelar com acabamento anodizado.",
-    specs: {
-      layout: "75%",
-      switches: "GravaStar x Kailh Linear",
-      material: "Alumínio",
-      conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
-      rgb: "270° customizável",
-    },
-    variants: [{ name: "Interstellar Silver", color: "#C0C0C0", price: 980 }],
-    options: [
-      {
-        id: "switch",
-        label: "Switch",
-        choices: [
-          { id: "linear", label: "Linear", priceDelta: 0 },
-          { id: "tactile", label: "Tátil", priceDelta: 20 },
-        ],
-      },
-      {
-        id: "layout",
-        label: "Layout",
-        choices: [
-          { id: "abnt2", label: "ABNT2", priceDelta: 0 },
-          { id: "ansi", label: "ANSI (US)", priceDelta: 0 },
-        ],
-      },
-    ],
-    frames: 0,
-    images: [
-      "placeholder_k1pro_silver_01.jpg",
-      "placeholder_k1pro_silver_02.jpg",
-    ],
-  },
-  {
-    id: "k1-stealth-black",
-    name: "Mercury K1 — Stealth Black",
-    category: "Teclados",
+    tagline: "75% em alumínio, hot-swappable e conexão tri-mode.",
     price: 710,
+    specs: {
+      layout: "75%",
+      switches: "GravaStar Stellar Bloom (Linear)",
+      material: "Alumínio (estrutura)",
+      hotswap: "Hot-swappable",
+      conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
+      bateria: "8000 mAh",
+      rgb: "2 sistemas RGB",
+    },
+    options: [
+      {
+        id: "switch",
+        label: "Switch",
+        choices: [
+          { id: "linear", label: "Linear", priceDelta: 0 },
+          { id: "tactile", label: "Tátil", priceDelta: 20 },
+        ],
+      },
+      layoutOption,
+    ],
+    frames: 0,
+    variants: [
+      { name: "Stealth Black", color: "#0D0D0D", price: 710, images: [] },
+      { name: "Gradient Black", color: "#2B2B2B", price: 710, images: [] },
+      { name: "Gradient White", color: "#E6E6E6", price: 710, images: [] },
+      { name: "Sakura Pink", color: "#E8A6B6", price: 765, badge: "Edição Especial", images: [] },
+      { name: "Lavender Purple", color: "#9A8AC9", price: 765, badge: "Edição Especial", images: [] },
+    ],
+  },
+
+  // ------------------------------------------------------------------- K1 Lite
+  {
+    id: "k1-lite",
+    name: "Mercury K1 Lite",
+    category: "Teclados",
     badge: null,
-    tagline: "Discreto, total black, pronto para o dia a dia.",
-    specs: {
-      layout: "75%",
-      switches: "GravaStar x Kailh Linear",
-      material: "Alumínio",
-      conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
-      rgb: "2 sistemas de luz",
-    },
-    variants: [{ name: "Stealth Black", color: "#0D0D0D", price: 710 }],
-    options: [
-      {
-        id: "switch",
-        label: "Switch",
-        choices: [
-          { id: "linear", label: "Linear", priceDelta: 0 },
-          { id: "tactile", label: "Tátil", priceDelta: 20 },
-        ],
-      },
-    ],
-    frames: 0,
-    images: ["placeholder_k1_stealth_01.jpg", "placeholder_k1_stealth_02.jpg"],
-  },
-  {
-    id: "k1-sakura-pink",
-    name: "Mercury K1 — Sakura Pink (Edição Especial)",
-    category: "Teclados",
-    price: 765,
-    badge: "Edição Especial",
-    tagline: "Rosa sakura em série limitada.",
-    specs: {
-      layout: "75%",
-      switches: "GravaStar x Kailh Linear",
-      material: "Alumínio",
-      conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
-      rgb: "2 sistemas de luz",
-    },
-    variants: [{ name: "Sakura Pink", color: "#E8A0B0", price: 765 }],
-    options: [
-      {
-        id: "switch",
-        label: "Switch",
-        choices: [
-          { id: "linear", label: "Linear", priceDelta: 0 },
-          { id: "tactile", label: "Tátil", priceDelta: 20 },
-        ],
-      },
-    ],
-    frames: 0,
-    images: ["placeholder_k1_sakura_01.jpg", "placeholder_k1_sakura_02.jpg"],
-  },
-  {
-    id: "k1-lite-transparent-black",
-    name: "Mercury K1 Lite — Transparent Black",
-    category: "Teclados",
+    tagline: "Entrada premium 75% em policarbonato, hot-swap e pré-lubrificado.",
     price: 490,
-    badge: null,
-    tagline: "Estrutura translúcida em policarbonato.",
     specs: {
       layout: "75%",
-      switches: "GravaStar x BSUN Linear",
-      material: "PC (policarbonato)",
+      switches: "GravaStar x Kailh Linear (pré-lubrificado)",
+      material: "Policarbonato (translúcido)",
+      hotswap: "Hot-swappable (gasket)",
       conexao: "2.4GHz / Bluetooth 5.0 / USB-C",
-      rgb: "1 sistema de luz",
+      rgb: "RGB",
     },
-    variants: [{ name: "Transparent Black", color: "#2A2A2A", price: 490 }],
     options: [
       {
         id: "switch",
         label: "Switch",
         choices: [{ id: "linear", label: "Linear", priceDelta: 0 }],
       },
+      layoutOption,
     ],
     frames: 0,
-    images: ["placeholder_k1lite_01.jpg", "placeholder_k1lite_02.jpg"],
+    variants: [
+      { name: "Transparent Black", color: "#34343A", price: 490, images: [] },
+      { name: "Crystal Aurora", color: "#4A6FA5", price: 545, badge: "Edição Especial", images: [] },
+      { name: "Lumen Rose", color: "#E0A7C0", price: 545, badge: "Edição Especial", images: [] },
+    ],
   },
 ];
 
 // Busca rápida por id (usada na página de produto).
 export const getProductById = (id) => products.find((p) => p.id === id);
+
+// Menor preço entre as variantes (para o card mostrar "a partir de").
+export const startingPrice = (product) =>
+  Math.min(...product.variants.map((v) => v.price));

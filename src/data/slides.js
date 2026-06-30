@@ -16,13 +16,13 @@ export const heroSlides = [
     cta: { label: "Ver Coleção", type: "link", to: "/#catalogo" },
   },
   {
-    id: "slide-k1pro",
-    eyebrow: "Mais Vendido",
-    title: "Mercury K1 Pro — Cyberpunk",
-    subtitle: "Iluminação lateral de 270° e switches Speedy Mint.",
-    image: "",
+    id: "slide-v60",
+    eyebrow: "Novo • Magnético",
+    title: "Mercury V60 Pro",
+    subtitle: "Switches magnéticos UFO, 8000Hz e Rapid Trigger. Case translúcido.",
+    image: "", // ex.: "/products/v60-pro/clutch-01.jpg"
     accentTone: "#00E0FF",
-    cta: { label: "Conhecer", type: "link", to: "/produto/k1-pro-cyberpunk" },
+    cta: { label: "Conhecer", type: "link", to: "/produto/v60-pro" },
   },
   {
     id: "slide-montar",
