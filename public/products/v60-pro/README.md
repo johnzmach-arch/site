@@ -1,19 +1,21 @@
 # Imagens do Mercury V60 Pro
 
-Coloque aqui as 5 fotos do V60 Pro (case translúcido / edição Clutch) com
-exatamente estes nomes — assim elas aparecem automaticamente no site:
+Estas são as imagens **reais** da GravaStar (case translúcido), já em uso no
+site. São `.webp`.
 
-```
-/public/products/v60-pro/clutch-01.jpg
-/public/products/v60-pro/clutch-02.jpg
-/public/products/v60-pro/clutch-03.jpg
-/public/products/v60-pro/clutch-04.jpg
-/public/products/v60-pro/clutch-05.jpg
-```
+## Variante "Onyx Crystal"
+- `onyx-crystal-7.webp` — foto principal (em pé, RGB branco)
+- `onyx-crystal-6.webp` — top-down RGB branco
+- `onyx-crystal-3.webp` — destaque de specs (8000Hz / UFO / 60%)
+- `onyx-crystal-2.webp` — presets de perfil
+- `onyx-crystal-4.webp` — detalhe do switch magnético
+- `onyx-crystal-5.webp` — software GravaStar Hub
+- `onyx-crystal-1.webp` — camadas internas
 
-Pode ser `.jpg`, `.png` ou `.webp` — se mudar a extensão, ajuste os caminhos
-em `src/data/products.js` (variante "Clutch — Transparente" do produto
-`v60-pro`).
+## Variante "Transparent Black"
+- `transparent-black-2.webp` — foto principal (RGB branco/vermelho)
+- `transparent-black-1.webp` — ângulo lateral
 
-> Enquanto os arquivos não estiverem aqui, o site mostra o placeholder dark
-> elegante — nada quebra.
+Para trocar/ordenar, edite a lista `images` de cada variante do produto
+`v60-pro` em `src/data/products.js`. Para adicionar uma nova variante de cor,
+basta criar outro objeto em `variants` com seu próprio `images`.

@@ -20,7 +20,7 @@ export const heroSlides = [
     eyebrow: "Novo • Magnético",
     title: "Mercury V60 Pro",
     subtitle: "Switches magnéticos UFO, 8000Hz e Rapid Trigger. Case translúcido.",
-    image: "", // ex.: "/products/v60-pro/clutch-01.jpg"
+    image: "/products/v60-pro/onyx-crystal-7.webp",
     accentTone: "#00E0FF",
     cta: { label: "Conhecer", type: "link", to: "/produto/v60-pro" },
   },

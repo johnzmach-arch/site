@@ -68,16 +68,27 @@ export const products = [
     frames: 0,
     variants: [
       {
-        name: "Clutch — Transparente",
-        color: "#3E434C",
+        name: "Onyx Crystal",
+        color: "#3A3D44",
         price: 1090,
-        // Coloque as 5 fotos enviadas em /public/products/v60-pro/
+        // Imagens reais GravaStar (case translúcido smoky). Beauty shots primeiro.
         images: [
-          "/products/v60-pro/clutch-01.jpg",
-          "/products/v60-pro/clutch-02.jpg",
-          "/products/v60-pro/clutch-03.jpg",
-          "/products/v60-pro/clutch-04.jpg",
-          "/products/v60-pro/clutch-05.jpg",
+          "/products/v60-pro/onyx-crystal-7.webp",
+          "/products/v60-pro/onyx-crystal-6.webp",
+          "/products/v60-pro/onyx-crystal-3.webp",
+          "/products/v60-pro/onyx-crystal-2.webp",
+          "/products/v60-pro/onyx-crystal-4.webp",
+          "/products/v60-pro/onyx-crystal-5.webp",
+          "/products/v60-pro/onyx-crystal-1.webp",
+        ],
+      },
+      {
+        name: "Transparent Black",
+        color: "#15151A",
+        price: 1090,
+        images: [
+          "/products/v60-pro/transparent-black-2.webp",
+          "/products/v60-pro/transparent-black-1.webp",
         ],
       },
     ],

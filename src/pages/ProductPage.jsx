@@ -29,7 +29,10 @@ export default function ProductPage() {
   const product = getProductById(id);
 
   const [variantIdx, setVariantIdx] = useState(0);
-  const [view, setView] = useState("360"); // "360" | "galeria"
+  // Abre na galeria quando há fotos reais; senão, no giro 360° procedural.
+  const [view, setView] = useState(
+    product?.variants?.[0]?.images?.length ? "galeria" : "360"
+  );
   const [galleryIdx, setGalleryIdx] = useState(0);
   const [options, setOptions] = useState(() =>
     Object.fromEntries((product?.options || []).map((o) => [o.id, o.choices[0].id]))
