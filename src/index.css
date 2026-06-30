@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Acento padrão (sobrescrito em runtime a partir do siteConfig em main.jsx) */
+:root {
+  --accent: #c8a050;
+  --accent-soft: rgba(200, 160, 80, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-ink-900 text-white/90 font-sans antialiased;
+  margin: 0;
+}
+
+/* Scrollbar discreta no tema dark */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Seleção de texto na cor de acento */
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+/* Utilitário: botão de acento premium */
+.btn-accent {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium uppercase tracking-widest transition-all duration-300;
+  background: var(--accent);
+  color: #000;
+}
+.btn-accent:hover {
+  box-shadow: 0 0 32px var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300;
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Texto de seção: rótulo pequeno em maiúsculas */
+.eyebrow {
+  @apply font-display text-xs uppercase tracking-widest;
+  color: var(--accent);
+}
